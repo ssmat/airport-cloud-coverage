@@ -47,4 +47,4 @@ Assim como na pasta *frontend*, use esses comandos para iniciar a API.
 
 > Esse é um projeto com o intuito de balizar e adquirir o conhecimento. Novas atualizações serão feitas afim de refinar a aplicação.
 
-**Próxima implementação:** React Hooks.
+**Próxima implementação:** React Hooks `atualmente estudando`
