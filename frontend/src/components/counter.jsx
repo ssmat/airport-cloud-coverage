@@ -1,22 +1,26 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 
-class Counter extends Component {
-    render() {
-        return (
-            <div>
-                <span>{this.props.counter.label}</span>
-                <span className="badge m-2 p-2 badge-primary">{this.props.counter.value}</span>
-                <button onClick={() => this.props.onIncrement(this.props.counter)} className={this.getButtonClasses()}><b>+</b></button>
-                <button onClick={() => this.props.onDecrement(this.props.counter)} className={this.getButtonClasses()} disabled={this.props.counter.value === this.props.counter.minValue}><b>-</b></button>
-            </div>
-        );
-    }
+function Counter(props) {
+    const [count, setCount] = useState(props.counter.value);
+    useEffect(() => {
+        if (count > props.counter.value) {
+            props.onIncrement(props.counter, count);
+        } else {
+            props.onDecrement(props.counter, count);
+        }
+    }, [count]);
 
-    getButtonClasses() {
-        let classes = "btn btn-secondary btn-sm m-2 ";
-        classes += (this.props.counter.value === 0) && "disabled";
-        return classes;
-    }
+    return (
+        <div>
+            <span>{props.counter.label}</span>
+            <span className="badge m-2 p-2 badge-primary">{count}</span>
+            {/* <button onClick={() => setCount(count + 1)} className="btn btn-secondary btn-sm m-2"><b>+</b></button> */}
+            <button onClick={() => setCount(count + 1)} className="btn btn-secondary btn-sm m-2"><b>+</b></button>
+
+            <button onClick={() => setCount(count - 1)} className="btn btn-secondary btn-sm m-2" disabled={count === props.counter.minValue}><b>-</b></button>
+        </div>
+    );
 }
 
-export default Counter;
+export default Counter

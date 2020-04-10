@@ -67,8 +67,8 @@ class App extends Component {
         <Counters counters={this.state.counters} onIncrement={this.handleIncrement} onDecrement={this.handleDecrement} onSend={this.calculate} />
         <div className="container d-flex justify-content-center">
           <div>
-            {this.state.field.map(element => (
-              <Map content={element}></Map>
+            {this.state.field.map((element, index) => (
+              <Map key={index} content={element}></Map>
             ))}
           </div>
         </div>
