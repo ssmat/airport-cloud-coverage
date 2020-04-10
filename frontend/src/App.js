@@ -11,7 +11,6 @@ class App extends Component {
       { id: 0, name: 'airports', value: 3, minValue: 3, label: 'Quantidade de aeroportos' },
       { id: 1, name: 'clouds', value: 4, minValue: 4, label: 'Quantidade de nuvens' },
       { id: 2, name: 'map', value: 10, minValue: 10, label: 'Tamanho do mapa' },
-      { id: 3, name: 'days', value: 30, minValue: 1, label: 'Quantidade de dias a serem analisados' },
     ],
     field: []
   };
@@ -58,11 +57,15 @@ class App extends Component {
     this.setState({ allAirportsCovered });
   }
 
+  componentDidMount = () => {
+    this.calculate();
+  }
+
   render() {
     return (
       <div className="App">
         <Counters counters={this.state.counters} onIncrement={this.handleIncrement} onDecrement={this.handleDecrement} onSend={this.calculate} />
-        <div class="container d-flex justify-content-center">
+        <div className="container d-flex justify-content-center">
           <div>
             {this.state.field.map(element => (
               <Map content={element}></Map>

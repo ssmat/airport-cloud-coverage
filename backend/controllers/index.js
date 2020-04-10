@@ -9,15 +9,34 @@ module.exports = function (router) {
         for (let airport = 0; airport < mapInfo.airports; airport++) {
             let y = Math.floor(Math.random() * (mapInfo.map - 0)) + 0;
             let x = Math.floor(Math.random() * (mapInfo.map - 0)) + 0;
-            airportsY.push(y);
-            airportsX.push(x);
+
+            if (!airportsX.includes(x)) {
+                airportsX.push(x);
+            } else {
+                airportsX.push(x + 1);
+            }
+
+            if (!airportsY.includes(y)) {
+                airportsY.push(y);
+            } else {
+                airportsY.push(y + 1);
+            }
         }
 
         for (let cloud = 0; cloud < mapInfo.clouds; cloud++) {
             let y = Math.floor(Math.random() * (mapInfo.map - 0)) + 0;
             let x = Math.floor(Math.random() * (mapInfo.map - 0)) + 0;
-            cloudsY.push(y);
-            cloudsX.push(x);
+            if (!cloudsX.includes(x)) {
+                cloudsX.push(x);
+            } else {
+                cloudsX.push(x + 1);
+            }
+
+            if (!cloudsY.includes(y)) {
+                cloudsY.push(y);
+            } else {
+                cloudsY.push(x + 1);
+            }
         }
 
         for (var y = 0; y < mapInfo.map; y++) { // linhas
@@ -25,8 +44,7 @@ module.exports = function (router) {
             for (let x = 0; x < mapInfo.map; x++) { // colunas
                 if (airportsY.includes(y) && airportsX[airportsY.indexOf(y)] == x) {
                     lines.push('A');
-                }
-                if (cloudsY.includes(y) && cloudsX[cloudsY.indexOf(y)] == x) {
+                } if (cloudsY.includes(y) && cloudsX[cloudsY.indexOf(y)] == x) {
                     lines.push('N');
                 } else {
                     lines.push('.');
@@ -46,30 +64,26 @@ module.exports = function (router) {
             }
         }
 
-        var getAirports = newPlot.map(e => ( // verifica onde existem aeroportos
-            e.indexOf('A')
-        )).filter(element => {
-            return element != -1;
-        });
         // Calcular dias para o primeiro aeroporto ser atingido
         let countDays = 0; // Count dos dias
         let firstAirportCovered = 0; // Dias até o primeiro aeroporto ser coberto
         let allAirportsCovered = 0; // Dias até todos os aeroportos estarem cobertos
 
-        while (countDays < mapInfo.days) {
-            let getClouds = newPlot.map(e => ( // verifica onde existem nuvens
+        while (allAirportsCovered == 0) {
+            const getClouds = newPlot.map(e => ( // verifica onde existem nuvens
                 e.indexOf('N')
             ));
 
-            getClouds.forEach((e, index) => {
-                var currentAirports = newPlot.map(e => ( // verifica onde existem aeroportos
-                    e.indexOf('A')
-                )).filter(element => {
-                    return element != -1;
-                });
+            const currentAirports = [...newPlot.map(element => ( // verifica onde existem aeroportos
+                element.indexOf('A')
+            )).filter(element => {
+                return element != -1;
+            })];
 
+
+            getClouds.forEach((e, index) => {
                 if (e != -1) {
-                    if (newPlot[index - 1][e] != undefined) { // acima
+                    if (newPlot[index - 1] != undefined) { // acima
                         newPlot[index - 1][e] = 'N';
                     }
 
@@ -81,24 +95,30 @@ module.exports = function (router) {
                         newPlot[index][e - 1] = 'N';
                     }
 
-                    if (newPlot[index + 1][e] != undefined) { // abaixo
+                    if (newPlot[index + 1] != undefined) { // abaixo
                         newPlot[index + 1][e] = 'N';
                     }
 
-                    countDays++
-
-                    if (currentAirports.length < getAirports.length) {
-                        firstAirportCovered = countDays
+                    if (firstAirportCovered == 0 && currentAirports.length < mapInfo.airports) {
+                        firstAirportCovered = countDays;
                     }
 
-                    if (currentAirports.length === 0) {
-                        allAirportsCovered = countDays
+                    let batata = newPlot.map(e => ( // verifica onde existem nuvens
+                        e.indexOf('A')
+                    )).filter(e => {
+                        return e != -1;
+                    });
+
+                    if (countDays == mapInfo.map) {
+                        allAirportsCovered = countDays;
+                    } else {
+                        allAirportsCovered = currentAirports.length < 1 && countDays;
                     }
                 }
             });
+
+            countDays++
         }
-
-
 
         res.json({
             error: 'false',
