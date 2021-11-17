@@ -15,7 +15,7 @@ class Counters extends Component {
                 {counters.map(counter => (
                     <Counter key={counter.id} onIncrement={onIncrement} onDecrement={onDecrement} onSend={onSend} counter={counter}></Counter>
                 ))}
-                <button onClick={() => this.props.onSend(counters)} className="btn btn-danger btn-sm m-2">Solucionar</button>
+                <button onClick={() => this.props.onSend(counters)} className="btn btn-danger btn-sm m-2">Execute!</button>
             </div>
         );
     }

@@ -8,9 +8,9 @@ import './App.scss';
 class App extends Component {
   state = {
     counters: [
-      { id: 0, name: 'airports', value: 3, minValue: 3, label: 'Quantidade de aeroportos' },
-      { id: 1, name: 'clouds', value: 4, minValue: 4, label: 'Quantidade de nuvens' },
-      { id: 2, name: 'map', value: 10, minValue: 10, label: 'Tamanho do mapa' },
+      { id: 0, name: 'airports', value: 3, minValue: 3, label: 'Airports' },
+      { id: 1, name: 'clouds', value: 4, minValue: 4, label: 'Clouds' },
+      { id: 2, name: 'map', value: 10, minValue: 10, label: 'Map size' },
     ],
     field: []
   };
@@ -65,6 +65,9 @@ class App extends Component {
     return (
       <div className="App">
         <Counters counters={this.state.counters} onIncrement={this.handleIncrement} onDecrement={this.handleDecrement} onSend={this.calculate} />
+
+        <h3>The first airport will be hit by clouds in <b>{this.state.firstAirportCovered}</b> days and all the airports will be covered by the clouds in <b>{this.state.allAirportsCovered}</b> days </h3>
+
         <div className="container d-flex justify-content-center">
           <div>
             {this.state.field.map((element, index) => (
@@ -72,9 +75,6 @@ class App extends Component {
             ))}
           </div>
         </div>
-
-        <h3>O primeiro aeroporto vai ser atingido pelas nuvens em <b>{this.state.firstAirportCovered}</b> dias</h3>
-        <h3>Todos os aeroportos serão cobertos pelas nuvens <b>{this.state.allAirportsCovered}</b> dias</h3>
       </div>
     );
   }

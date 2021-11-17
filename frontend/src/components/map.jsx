@@ -5,7 +5,7 @@ const Map = (props) => {
         <ul className="plot-line">
             {props.content.map((item, index) => (
                 <li key={index}>
-                    {item}
+                    {item !== 'o' ? <b>{item}</b> : item}
                 </li>
             ))}
         </ul>

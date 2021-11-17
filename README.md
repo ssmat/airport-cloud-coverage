@@ -1,35 +1,33 @@
 # Airport Cloud Coverage app!
 
-**Essa aplicação consiste no seguinte desafio:**
+**This application consists of the following challenge:**
 
-**Premissas:**  
+**Assumptions:**
 
- - O Frontend deve ser um SPA escrito em React com React hooks.
- - Backend deve ser escrito nodejs utilizando a suite krakenjs.
- - Todos os cálculos devem ser efetuados em um endpoint no backend   
+ - The Frontend must be a SPA written in React with React hooks.
+ - Backend must be written nodejs using krakenjs suite.
+ - All calculations must be performed on an endpoint in the backend
    (API).
- - O frontend deve enviar para a api os dados iniciais, sendo quantidade
-   mínima de aeroportos: 3, quantidade mínima de nuvens: 4 nuvens,
-   tamanho do terreno tendo no mínimo uma área de 10 x 10 linhas. Como resultado ele deve receber os dados para plotagem de um gráfico ou grid com o resultado do calculo.  
- - O resultado deve sempre iniciar com o numero de nuvens e aeroportos
-   em posições aleatórias, lembrando que um aeroporto não pode iniciar
-   com uma nuvem sobre ele.
+ - The frontend must send the initial data to the api, being minimum number of airports: 3, minimum amount of clouds: 4, terrain size having at least an area of ​​10 x 10. As a result it must receive data for plotting a graph or grid with the result of the calculation.
+ - The result must always start with the number of clouds and airports
+   in random positions, remembering that an airport cannot start
+   with a cloud over it.
 
-**O Desafio:**  
-Um vulcão acaba de entrar em erupção, provocando uma nuvem de cinzas que se alastra impedindo a circulação aérea. O governo está muito preocupado e deseja saber quando uma nuvem de cinzas irá atingir todos os aeroportos do país. Está disponível um mapa detalhando a situação atual. O mapa é retangular, dividido em pequenos quadrados. Neste mapa existem três tipos de quadrados: nuvem (indicando que esta região do mapa já está coberto por nuvens), aeroportos (indicando a localização de um aeroporto) e todas as outras (indicando locais onde a nuvem ainda não chegou). A cada dia, a nuvem expande-se um quadrado na horizontal e um quadrado na vertical. Ou seja, ao fim de cada dia, todos os quadrados adjacentes (vertical ou horizontalmente) a uma nuvem, também passam a conter nuvens.
+**The challenge:**
+A volcano has just erupted, causing a cloud of ash that spreads and impedes air circulation. The government is very concerned and wants to know when an ash cloud will hit every airport in the country. A map detailing the current situation is available. The map is rectangular, divided into small squares. On this map there are three types of squares: cloud (indicating that this region of the map is already covered by clouds), airports (indicating the location of an airport) and all others (indicating places where the cloud has not yet arrived). Each day, the cloud expands one square horizontally and one square vertically. That is, at the end of each day, all squares adjacent (vertically or horizontally) to a cloud, also contain clouds.
 
-Para preparar os planos de contingência, o governo necessita saber:  
-> Quantos dias demorará para ao menos um aeroporto ficar coberto pelas nuvens  .
-> Daqui quantos dias todos os aeroportos estarão cobertos pelas nuvens. Dado um quadriculado mínimo de 10 linhas e 10 colunas, além da indicação inicial das nuvens e dos aeroportos, desenvolva uma programa que informe o número de dias até um primeiro aeroporto ficar debaixo da nuvem de cinzas e o número de dias até que todos os aeroportos ficarem cobertos pelas cinzas. Podendo subir o resultado do teste no git pessoal do candidato me enviando o link do projeto para analise.
+To prepare contingency plans, the government needs to know:
+> How many days will it take for at least one airport to be covered by clouds.
+> In how many days will all airports be covered by clouds. Given a minimum grid of 10 rows and 10 columns, in addition to the initial indication of clouds and airports, develop a program that reports the number of days until a first airport is under the ash cloud and the number of days until all airports become covered by the ashes. Being able to upload the test result in the candidate's personal git sending me the project link for analysis.
 
 
-# Como utilizar a aplicação
+# How to use the application
 
-O projeto é dividido em dois ambientes: Um frontend em React.js e um backend em Node.js.
+The project is divided into two environments: A frontend in React.js and a backend in Node.js.
 
 ### Frontend
 
-A partir da pasta raiz do projeto, use os comandos:
+From the project's root folder, use the commands:
 
 
     yarn install
@@ -37,14 +35,7 @@ A partir da pasta raiz do projeto, use os comandos:
 
 ### Backend
 
-Assim como na pasta *frontend*, use esses comandos para iniciar a API.
+As with the *frontend* folder, use these commands to launch the API.
 
     yarn install
     yarn run dev
-
-
-## Observações
-
-> Esse é um projeto com o intuito de balizar e adquirir o conhecimento. Novas atualizações serão feitas afim de refinar a aplicação.
-
-**React Hooks:** Implementado no componente contador `atualmente estudando hooks`

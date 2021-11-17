@@ -1,8 +1,8 @@
 {
-  "name": "teste-ns",
+  "name": "backend",
   "version": "0.1.0",
-  "description": "Teste Entrevista NS",
-  "author": "Felipe Braido - Cadmus",
+  "description": "backend",
+  "author": "Felipe Braido - modified by Mateus Silva",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",

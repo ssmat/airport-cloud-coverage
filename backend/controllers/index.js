@@ -39,15 +39,15 @@ module.exports = function (router) {
             }
         }
 
-        for (var y = 0; y < mapInfo.map; y++) { // linhas
+        for (var y = 0; y <= mapInfo.map; y++) { // linhas
             let lines = [];
-            for (let x = 0; x < mapInfo.map; x++) { // colunas
+            for (let x = 0; x <= mapInfo.map; x++) { // colunas
                 if (airportsY.includes(y) && airportsX[airportsY.indexOf(y)] == x) {
                     lines.push('A');
-                } if (cloudsY.includes(y) && cloudsX[cloudsY.indexOf(y)] == x) {
+                } else if (cloudsY.includes(y) && cloudsX[cloudsY.indexOf(y)] == x) {
                     lines.push('N');
                 } else {
-                    lines.push('.');
+                    lines.push('o');
                 }
             }
             field.push(lines);
@@ -103,7 +103,7 @@ module.exports = function (router) {
                         firstAirportCovered = countDays;
                     }
 
-                    let batata = newPlot.map(e => ( // verifica onde existem nuvens
+                    let checkClouds = newPlot.map(e => ( // verifica onde existem nuvens
                         e.indexOf('A')
                     )).filter(e => {
                         return e != -1;
